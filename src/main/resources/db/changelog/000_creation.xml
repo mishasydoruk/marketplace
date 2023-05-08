@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="0" author="Sydoruk">
+        <createTable tableName="customer">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_time" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="credit_card_data">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_customer_id" references="customer(id)"/>
+            </column>
+            <column name="number" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="expire_date" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="cvv" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="created_time" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="advertisement">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="product_id" type="varchar(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="price" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_time" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="store_cart">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_customer_id" references="customer(id)"/>
+            </column>
+            <column name="created_time" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="cart_to_advertisements">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="store_cart_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_store_cart_id" references="store_cart(id)"/>
+            </column>
+            <column name="advertisement_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_advertisement_id" references="advertisement(id)"/>
+            </column>
+            <column name="created_time" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="transaction">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="credit_card_data_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_credit_card_data_id" references="credit_card_data(id)"/>
+            </column>
+            <column name="advertisement_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_advertisement_id" references="advertisement(id)"/>
+            </column>
+            <column name="reference_id" type="varchar(50)">
+                <constraints unique="true"/>
+            </column>
+            <column name="amount" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_time" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
