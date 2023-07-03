@@ -1,17 +1,17 @@
 package com.marketplace.enitity;
 
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.time.Instant;
 
 @Entity
@@ -25,18 +25,15 @@ public class CreditCardData {
   @Column(name = "id", nullable = false)
   private Long id;
 
+  @Column(name = "reference_id")
+  private String referenceId;
+
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
   private Customer customer;
 
   @Column(name = "number")
   private String number;
-
-  @Column(name = "expire_date")
-  private String expireDate;
-
-  @Column(name = "cvv")
-  private String cvv;
 
   @Column(name = "created_time")
   private Instant createdTime = Instant.now();
@@ -47,7 +44,6 @@ public class CreditCardData {
         "id=" + id +
         ", customer=" + customer +
         ", number='" + number.replaceFirst(".{12}$", "*") + '\'' +
-        ", expireDate='" + expireDate + '\'' +
         ", createdTime=" + createdTime +
         '}';
   }

@@ -37,15 +37,6 @@
             <column name="number" type="varchar(50)">
                 <constraints unique="true" nullable="false"/>
             </column>
-            <column name="expire_date" type="varchar(50)">
-                <constraints unique="true" nullable="false"/>
-            </column>
-            <column name="cvv" type="varchar(50)">
-                <constraints unique="true" nullable="false"/>
-            </column>
-            <column name="name" type="varchar(50)">
-                <constraints unique="true" nullable="false"/>
-            </column>
             <column name="created_time" type="timestamp" defaultValue="now()">
                 <constraints nullable="false"/>
             </column>

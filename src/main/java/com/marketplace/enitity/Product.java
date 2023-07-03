@@ -1,14 +1,16 @@
 package com.marketplace.enitity;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -26,6 +28,9 @@ public class Product {
   @Column(name = "reference_id")
   private String referenceId;
 
+  @Column(name = "title")
+  private String title;
+
   @Column(name = "description")
   private String description;
 
@@ -38,11 +43,16 @@ public class Product {
   @Column(name = "created_time")
   private Instant createdTime = Instant.now();
 
+  @ManyToOne
+  @JoinColumn(name = "customer_id")
+  private Customer customer;
+
   @Override
   public String toString() {
     return "Product{" +
         "id=" + id +
         ", referenceId='" + referenceId + '\'' +
+        ", title='" + title + '\'' +
         ", description='" + description + '\'' +
         ", price=" + price +
         ", params='" + params + '\'' +

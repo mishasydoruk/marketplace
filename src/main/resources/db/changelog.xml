@@ -6,6 +6,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-<include file="changelog/000_creation.xml" relativeToChangelogFile="true"/>
-<include file="changelog/001_add_product_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/000_creation.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/001_add_product_table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/002_add_references_to_customer.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/003_add_title_to_product.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/004_add_cart_to_customers.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/005_add_reference_id_to_card.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
